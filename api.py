@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import requests
 import os
 
 app = Flask(__name__)
+CORS(app) 
 
 # Your WeatherAPI key
 api_key = '35ddcd48136b4335ae832158240710'
@@ -20,12 +22,7 @@ def get_weather():
         # Check if the request was successful
         if response.status_code == 200:
             data = response.json()
-            weather_info = {
-                "Location": data['location']['name'],
-                "Temperature (°C)": data['current']['temp_c'],
-                "Condition": data['current']['condition']['text']
-            }
-            return jsonify(weather_info), 200
+            return jsonify(data), 200
         else:
             return jsonify({"error": "Failed to fetch weather data"}), response.status_code
 

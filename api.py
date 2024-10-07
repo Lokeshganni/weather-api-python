@@ -5,14 +5,14 @@ import os
 app = Flask(__name__)
 
 # Your WeatherAPI key
+api_key = '35ddcd48136b4335ae832158240710'
 
 # Define a route to fetch Hyderabad weather
 @app.route('/')
 def get_weather():
     try:
         # API URL for current weather data in Hyderabad
-        api_key = '35ddcd48136b4335ae832158240710'
-        url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q=Hyderabad"
+        url = f"http://api.weatherapi.com/v1/current.json?key={api_key}&q=Hyderabad"
         
         # Making the API request
         response = requests.get(url)
